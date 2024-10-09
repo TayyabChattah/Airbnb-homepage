@@ -5,3 +5,16 @@
   box-sizing: border-box;
 
 }
+/* Style for the property list container to make the cards horizontal */
+.property-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 2rem;
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+/* Optional: Hiding the scrollbar for a clean look */
+.property-list::-webkit-scrollbar {
+  display: none;
+}
