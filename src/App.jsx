@@ -3,7 +3,7 @@ import Navbar from './components/navbar/navbar'; // Ensure this path is correct
 import SearchBar from './components/searchbar/SearchBar'; // Ensure case-sensitivity is correct
 import Categories from './components/catogories/Categories'; // Ensure case-sensitivity is correct
 import ListingCard from './components/listingcard/ListingCard'; // Import the ListingCard component
-
+import Footer from './components/footer/Footer';
 // Dummy data for listings
 const propertyList = [
   {
@@ -80,7 +80,9 @@ const App = () => {
         {propertyList.map((property, index) => (
           <ListingCard key={index} property={property} />
         ))}
+        
       </div>
+      <Footer />
     </div>
   );
 };
