@@ -1,55 +1,80 @@
-import React, { useRef } from 'react';
-import './Categories.css';
+import React, { useState, useRef } from 'react';
 
-const Categories = () => {
-  const categories = [
-    { name: 'Icons', icon: 'fas fa-star' },
-    { name: 'Rooms', icon: 'fas fa-door-open' },
-    { name: 'Top cities', icon: 'fas fa-city' },
-    { name: 'Amazing views', icon: 'fas fa-mountain' },
-    { name: 'Treehouses', icon: 'fas fa-tree' },
-    { name: 'Top of the world', icon: 'fas fa-globe' },
-    { name: 'Bed & breakfasts', icon: 'fas fa-coffee' },
-    { name: 'Mansions', icon: 'fas fa-hotel' },
-    { name: 'Castles', icon: 'fas fa-chess-rook' },
-    { name: 'OMG!', icon: 'fas fa-exclamation-circle' },
-    { name: 'Trending', icon: 'fas fa-fire' },
-    { name: 'Arctic', icon: 'fas fa-snowflake' },
-    { name: 'Cabins', icon: 'fas fa-home' },
-    { name: 'New', icon: 'fas fa-bolt' },
-    { name: 'Camping', icon: 'fas fa-campground' },
-    { name: 'Luxury', icon: 'fas fa-gem' },
-    { name: 'Beach', icon: 'fas fa-umbrella-beach' },
-    { name: 'Villas', icon: 'fas fa-house-damage' },
-    { name: 'Unique stays', icon: 'fas fa-bed' },
-  ];
+const categories = [
+  'All',
+  'Beachfront',
+  'Cabins',
+  'Trending',
+  'Luxury',
+  'Camping',
+  'City Breaks',
+  'Countryside',
+  'Mountain Retreats',
+  'Island Getaways',
+  'Castles',
+  'Tiny Homes',
+];
 
-  // Using useRef to target the scrollable container
-  const categoriesContainerRef = useRef(null);
+const Categories = ({ onCategorySelect }) => {
+  const [activeCategory, setActiveCategory] = useState('All');
+  const scrollContainer = useRef(null);
 
-  // Function to handle scrolling when the arrow is clicked
-  const handleScroll = (direction) => {
-    const scrollAmount = 200; // Adjust this value to control how much it scrolls
-    if (direction === 'right') {
-      categoriesContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+    onCategorySelect(category);
+  };
+
+  const scrollLeft = () => {
+    scrollContainer.current.scrollBy({
+      left: -200,
+      behavior: 'smooth',
+    });
+  };
+
+  const scrollRight = () => {
+    scrollContainer.current.scrollBy({
+      left: 200,
+      behavior: 'smooth',
+    });
   };
 
   return (
-    <div className="categories-wrapper">
-      <div className="categories-container" ref={categoriesContainerRef}>
-        <div className="categories-list">
-          {categories.map((category, index) => (
-            <div key={index} className="category-item">
-              <i className={category.icon}></i>
-              <span>{category.name}</span>
-            </div>
-          ))}
-        </div>
+    <div className="relative flex items-center">
+      {/* Left Arrow */}
+      <button
+        onClick={scrollLeft}
+        className="absolute left-0 z-10 bg-pink-500 text-white rounded-full p-2 shadow-md hover:bg-pink-600"
+        style={{ transform: 'translate(-50%, 0)' }}
+      >
+        &lt;
+      </button>
+
+      {/* Scrollable Categories */}
+      <div
+        ref={scrollContainer}
+        className="flex overflow-x-auto py-4 whitespace-nowrap scroll-smooth gap-8 mx-8"
+      >
+        {categories.map((category) => (
+          <div
+            key={category}
+            className={`flex flex-col items-center text-gray-800 cursor-pointer hover:text-pink-500 ${
+              activeCategory === category ? 'text-pink-500 font-bold' : ''
+            }`}
+            onClick={() => handleCategoryClick(category)}
+          >
+            <i className="text-4xl mb-2">🏖️</i>
+            <span>{category}</span>
+          </div>
+        ))}
       </div>
-      {/* Scroll Arrow at the end */}
-      <button className="scroll-arrow" onClick={() => handleScroll('right')}>
-        <i className="fas fa-chevron-right"></i>
+
+      {/* Right Arrow */}
+      <button
+        onClick={scrollRight}
+        className="absolute right-0 z-10 bg-pink-500 text-white rounded-full p-2 shadow-md hover:bg-pink-600"
+        style={{ transform: 'translate(50%, 0)' }}
+      >
+        &gt;
       </button>
     </div>
   );

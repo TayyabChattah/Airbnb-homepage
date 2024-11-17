@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
-import './SearchBar.css'; // You will create this file for styling
 
 const SearchBar = () => {
   const [location, setLocation] = useState('');
 
   const handleSearch = () => {
     console.log(`Searching for location: ${location}`);
-    // You can add the logic to handle the search query here
   };
 
   return (
-    <div className="search-bar">
+    <div className="flex justify-center items-center p-2 bg-gray-100 rounded-full shadow-md">
       <input
         type="text"
-        className="search-input"
-        placeholder="Where are you going?"
+        placeholder="Location"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
+        className="p-2 rounded-full focus:outline-none"
       />
-      <button className="search-button" onClick={handleSearch}>
+      <button onClick={handleSearch} className="bg-pink-500 text-white p-2 rounded-full hover:bg-pink-600">
         Search
       </button>
     </div>

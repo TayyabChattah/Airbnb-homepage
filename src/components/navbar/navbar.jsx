@@ -1,39 +1,22 @@
-import React from 'react'
-import './navbar.css'
-const NavBar = () => {
+import React from 'react';
+
+const Navbar = () => {
   return (
-    <nav className="navbar">
-    <div className="navbar-container">
-      {/* Left Section: Logo */}
-      <div className="navbar-logo">
-      <img src="/logo/long-logo.png" alt="Airbnb Logo" />
-      </div>
-
-      {/* Middle Section: Navigation Links */}
-      <div className="navbar-links">
-        <a href="/">Stays</a>
-        <a href="/">Experiences</a>
-        <a href="/">Online Experiences</a>
-      </div>
-
-      {/* Right Section: User Menu */}
-      <div className="navbar-menu">
-        <a href="/" className="navbar-menu-item">Airbnb your home</a>
-        <button className="navbar-menu-item globe-icon">
-          <i className="fas fa-globe"></i> {/* Globe icon for language */}
-        </button>
-        <div className="navbar-user">
-          <button className="menu-icon">
-            <i className="fas fa-bars"></i> {/* Menu icon */}
-          </button>
-          <div className="user-avatar">
-            <i className="fas fa-user-circle"></i> {/* User icon */}
-          </div>
+    <nav className="flex justify-between items-center p-4 bg-white shadow-md">
+      <div className="flex items-center space-x-8">
+        <img src="/logo/long-logo.png" alt="Logo" className="w-24" />
+        <div className="flex space-x-4">
+          <a href="#" className="text-gray-800 font-medium hover:text-pink-500">Home</a>
+          <a href="#" className="text-gray-800 font-medium hover:text-pink-500">Experiences</a>
+          <a href="#" className="text-gray-800 font-medium hover:text-pink-500">Online Experiences</a>
         </div>
       </div>
-    </div>
-  </nav>
-  )
-}
+      <div className="flex items-center space-x-4">
+        <button className="text-gray-800 font-medium">Login</button>
+        <button className="text-gray-800 font-medium">Sign Up</button>
+      </div>
+    </nav>
+  );
+};
 
-export default NavBar
+export default Navbar;
